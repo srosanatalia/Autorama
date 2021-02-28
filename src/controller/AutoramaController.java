@@ -6,7 +6,7 @@
 package controller;
 
 import java.util.ArrayList;
-import model.Piloto;
+import model.*;
 
 /**
  *
@@ -32,5 +32,29 @@ public class AutoramaController {
     public ArrayList getPilotos() {
         return pilotos;
     }
+    
+    public void iniciarservidor() throws Exception{
+        new Thread(servidor).start();
+        new Thread(cliente).start();
+    }
+    
+    private static Runnable servidor = new Runnable() {
+        public void run() {
+            try{
+                ServidorUDP UDP = new ServidorUDP();
+                UDP.Servidor();
+            } catch (Exception e){}
+
+        }
+    };
+
+    private static Runnable cliente = new Runnable() {
+        public void run() {
+            try{
+                ClienteUDP Cliente = new ClienteUDP();
+                Cliente.Cliente();
+            } catch (Exception e){}
+       }
+    };
 
 }

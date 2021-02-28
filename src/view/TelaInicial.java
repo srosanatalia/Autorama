@@ -9,6 +9,8 @@ import java.awt.Component;
 import controller.AutoramaController;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -89,7 +91,12 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jButton4.setText("jButton1");
 
-        jButton5.setText("jButton1");
+        jButton5.setText("Iniciar UDP");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -292,6 +299,14 @@ public class TelaInicial extends javax.swing.JFrame {
         }
         painelCadastroPilotos.setVisible(false);
     }//GEN-LAST:event_botaoConfirmarCadastroPilotoActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        try {
+            autorama.iniciarservidor();
+        } catch (Exception ex) {
+            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
